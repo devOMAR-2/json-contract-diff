@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Grace",
+      "email": "grace@example.com",
+      "active": true,
+      "tags": ["navy", "cobol"],
+      "manager": null
+    },
+    {
+      "id": 2,
+      "name": "Linus",
+      "email": "linus@example.com",
+      "active": false,
+      "tags": [],
+      "manager": { "id": 1, "name": "Grace" }
+    }
+  ],
+  "count": 2
+}

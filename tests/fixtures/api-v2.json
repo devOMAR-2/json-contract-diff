@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "page": 1,
+    "perPage": 20,
+    "total": 2,
+    "nextCursor": "eyJpZCI6IjEwMiJ9",
+    "hasMore": false
+  },
+  "data": [
+    {
+      "id": "101",
+      "email": "ada@example.com",
+      "name": "Ada Lovelace",
+      "nickname": "ada",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-06-01T12:00:00Z",
+      "profile": {
+        "age": 36,
+        "bio": "Mathematician and writer.",
+        "avatarUrl": "https://cdn.example.com/a/101.png"
+      },
+      "roles": ["admin", "editor"],
+      "orders": [
+        {
+          "orderId": "ord_9f2a",
+          "total": { "amount": 99.5, "currency": "GBP" },
+          "items": [
+            { "sku": "BK-1001", "quantity": 2 },
+            { "sku": "BK-1002", "quantity": 1 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "102",
+      "email": "alan@example.com",
+      "name": "Alan Turing",
+      "createdAt": "2024-02-03T08:30:00Z",
+      "updatedAt": "2024-06-02T09:15:00Z",
+      "profile": { "age": 41, "bio": null, "avatarUrl": "https://cdn.example.com/a/102.png" },
+      "roles": [],
+      "orders": []
+    }
+  ]
+}

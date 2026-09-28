@@ -1,0 +1,29 @@
+{
+  "count": 3,
+  "users": [
+    {
+      "name": "Margaret",
+      "id": 7,
+      "email": "margaret@example.com",
+      "active": false,
+      "tags": ["apollo"],
+      "manager": { "name": "Ken", "id": 9 }
+    },
+    {
+      "name": "Ken",
+      "id": 9,
+      "email": "ken@example.com",
+      "active": true,
+      "tags": ["unix", "c"],
+      "manager": null
+    },
+    {
+      "name": "Dennis",
+      "id": 10,
+      "email": "dennis@example.com",
+      "active": true,
+      "tags": [],
+      "manager": null
+    }
+  ]
+}
