@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Test coverage
+coverage/
+
+# Packed tarballs
+*.tgz
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor folders
+.idea/
+.vscode/
+*.swp
+*.swo
