@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [20.x, 22.x, 24.x]
+        include:
+          - os: windows-latest
+            node-version: 22.x
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Test with coverage
+        run: npm run test:coverage
+
+      - name: Build
+        run: npm run build
+
+      - name: CLI smoke test
+        shell: bash
+        run: |
+          status=0
+          node dist/bin.js tests/fixtures/api-v1.json tests/fixtures/api-v2.json || status=$?
+          if [ "$status" -ne 1 ]; then
+            echo "Expected exit code 1 for breaking changes, got $status"
+            exit 1
+          fi
+
+          status=0
+          node dist/bin.js tests/fixtures/users-a.json tests/fixtures/users-b.json || status=$?
+          if [ "$status" -ne 0 ]; then
+            echo "Expected exit code 0 for compatible changes, got $status"
+            exit 1
+          fi
+
+      - name: Verify package contents
+        run: npm pack --dry-run
